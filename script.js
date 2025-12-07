@@ -2,6 +2,7 @@
 let computerScore = 0;
 let humanScore = 0;
 
+
 //Logic to get computer choice 
 let getComputerChoice = () => {
     //keep a random number between 1-100
@@ -22,6 +23,7 @@ let getComputerChoice = () => {
     return computerChoice;
 }
 
+
 //Logic to get human choice
 let getHumanChoice = () => {
     //keep user input 
@@ -41,3 +43,60 @@ let getHumanChoice = () => {
 
 let computerChoice = getComputerChoice();
 let humanChoice = getHumanChoice();
+
+
+//Logic to play a round
+let playRound = (humanChoice, computerChoice) => {
+    console.log("[ROUND START]");
+
+    //if human choice is "rock", then verify computer choice to announce winner
+    if(humanChoice=="rock"){
+        if(computerChoice=="rock"){
+            alert("[DRAW] both chose rock option");
+
+        }else if(computerChoice=="paper"){
+            alert("[YOU LOSE] computer are better than humans folks! :(");
+            computerScore++;
+
+        }else{
+            alert("[YOU WIN] congrats dude :)");
+            humanScore++;
+        }
+    }
+
+    //if human choice is "scissors", then verify computer choice to announce winner
+    else if(humanChoice=="paper"){
+        if(computerChoice=="rock"){
+            alert("[YOU WIN] congrats dude :)");
+            humanScore++;
+
+        }else if(computerChoice=="paper"){
+            alert("[DRAW] both chose rock option");
+
+        }else{
+            alert("[YOU LOSE] computer are better than humans folks! :(");
+            computerScore++;
+        }
+    }
+
+    //if human choice is "paper", then verify computer choice to announce winner
+    else if(humanChoice=="scissors"){
+        if(computerChoice=="rock"){
+            alert("[YOU LOSE] computer are better than humans folks! :(");
+            computerScore++;
+
+        }else if(computerChoice=="papaer"){
+            alert("[YOU WIN] congrats dude :)");
+            humanScore++;
+
+        }else{
+            alert("[DRAW] both chose rock option");
+        }
+    }
+
+    //if human choice is broken (it shouldn't cause we defensive programmed input) print error
+    else{
+        alert("WTF HAVE U CHOSEN DUDE");
+    }
+
+}
