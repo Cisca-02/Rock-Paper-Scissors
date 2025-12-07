@@ -26,23 +26,24 @@ let getComputerChoice = () => {
 
 //Logic to get human choice
 let getHumanChoice = () => {
+    let humanChoice;
+
     //keep user input 
-    let humanChoice = prompt("Enter your game's choice ('rock', 'paper', 'scissors')").toLowerCase();
-
-    //check if input is valid
-    if(humanChoice == "scissors" || humanChoice == "paper" || humanChoice == "rock"){
-        //if is valid, console print success message and return choice
-        console.log("Your choice " + humanChoice + " has been stored");
-        return humanChoice;
-    }else{
+    let i = 0;
+    do{
         //if isn't valid show an error message and try again
-        alert("[ERROR] input not valid, try again!");
-        getHumanChoice();
-    }
-}
+        if(i>0){
+            alert("[ERROR] input not valid, try again!");
+        }
 
-let computerChoice = getComputerChoice();
-let humanChoice = getHumanChoice();
+        humanChoice = prompt("Enter your game's choice ('rock', 'paper', 'scissors')", "");
+        humanChoice = humanChoice.toLowerCase();
+        i++;
+    }while(!(humanChoice == "scissors" || humanChoice == "paper" || humanChoice == "rock"));
+    
+    //return choice
+    return humanChoice;
+}
 
 
 //Logic to play a round
@@ -85,7 +86,7 @@ let playRound = (humanChoice, computerChoice) => {
             alert("[YOU LOSE] computer are better than humans folks! :(");
             computerScore++;
 
-        }else if(computerChoice=="papaer"){
+        }else if(computerChoice=="paper"){
             alert("[YOU WIN] congrats dude :)");
             humanScore++;
 
@@ -100,3 +101,14 @@ let playRound = (humanChoice, computerChoice) => {
     }
 
 }
+
+//test computerChoice output
+let computerChoice = getComputerChoice();
+console.log(computerChoice);
+
+//test humanChoice output
+let humanChoice = getHumanChoice();
+console.log(humanChoice);
+
+//test a round game
+playRound(humanChoice, computerChoice);
