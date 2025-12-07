@@ -99,16 +99,18 @@ let playRound = (humanChoice, computerChoice) => {
     else{
         alert("WTF HAVE U CHOSEN DUDE");
     }
-
 }
 
-//test computerChoice output
-let computerChoice = getComputerChoice();
-console.log(computerChoice);
+let checkPoints = numRound => {
+    alert("ROUND NUMBER " + numRound + "\n" +
+        "---Human score---: " + humanScore + "\n" +
+        "---Computer score---: " + computerScore
+    );
+}
 
-//test humanChoice output
-let humanChoice = getHumanChoice();
-console.log(humanChoice);
 
-//test a round game
-playRound(humanChoice, computerChoice);
+//test 5 round game
+for(let i=0; i<5; i++){
+    playRound(getHumanChoice(), getComputerChoice());
+    checkPoints(i+1);
+}
