@@ -15,5 +15,25 @@ let getComputerChoice = () => {
     else{
         computerChoice = "scissors";
     }
+    return computerChoice;
 }
 
+//Logic to get human choice
+let getHumanChoice = () => {
+    //keep user input 
+    let humanChoice = prompt("Enter your game's choice ('rock', 'paper', 'scissors')").toLowerCase();
+
+    //check if input is valid
+    if(humanChoice == "scissors" || humanChoice == "paper" || humanChoice == "rock"){
+        //if is valid, console print success message and return choice
+        console.log("Your choice " + humanChoice + " has been stored");
+        return humanChoice;
+    }else{
+        //if isn't valid show an error message and try again
+        alert("[ERROR] input not valid, try again!");
+        getHumanChoice();
+    }
+}
+
+let computerChoice = getComputerChoice();
+let humanChoice = getHumanChoice();
