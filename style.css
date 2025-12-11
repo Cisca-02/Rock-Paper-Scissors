@@ -1,3 +1,18 @@
+body {
+    background-color: gold;
+}
+
+.title {
+    text-align: center;
+    background-color: black;
+    color: gold;
+    padding: 24px;
+}
+
+img {
+    border: 3px dashed black;
+}
+
 .game {
     display: flex;
     justify-content: space-around;

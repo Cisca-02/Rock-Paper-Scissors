@@ -111,7 +111,7 @@ let playRound = (event) => {
 //---DOM MANIPULATION---
 
 //seleziono i 3 button
-const buttons = document.querySelectorAll("button");
+const buttons = document.querySelectorAll("img");
 buttons.forEach(button => button.addEventListener("click", playRound));
 
 //creo un <div> element che mostrerà il punteggio della partita
@@ -119,9 +119,11 @@ const div = document.createElement("div");
 
 //creo un <h1> element
 const h1 = document.createElement("h1");
+h1.style.textAlign = "center";
 
 //creo un <p> element
 const para = document.createElement("p");
+para.style.textAlign = "center";
 
 //aggiungo il <div> element al body
 document.body.appendChild(div);
