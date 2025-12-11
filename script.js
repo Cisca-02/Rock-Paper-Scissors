@@ -28,7 +28,7 @@ let computerScore = 0;
 
 //Logic to play a round
 let playRound = (event) => {
-    
+
     let humanChoice = event.target.className;
     let computerChoice = getComputerChoice();
 
@@ -84,6 +84,26 @@ let playRound = (event) => {
         alert("WTF HAVE U CHOSEN DUDE");
     }
 
+    if(computerScore == 5 || userScore == 5){
+        winnerAnn = computerScore == 5 ? "GAME OVER :(" : "CONGRATULATIONS :)";
+        const restartBtn  = document.createElement("button");
+        restartBtn.textContent = "RESTART"; 
+
+        const buttons = document.querySelectorAll("button");
+        buttons.forEach(button => button.style.display = "none");
+
+        div.appendChild(restartBtn);
+
+        restartBtn.addEventListener("click", () => {
+            h1.textContent = "";
+            para.textContent = "";
+            userScore = 0;
+            computerScore = 0;
+            buttons.forEach(button => button.style.display = "");
+            restartBtn.remove();
+        });
+    }
+
     h1.textContent = winnerAnn;
     para.textContent = `USER SCORE: ${userScore} ---- COMPUTER SCORE: ${computerScore}`;
 }
@@ -113,4 +133,3 @@ div.appendChild(para);
 
 
 
- 
