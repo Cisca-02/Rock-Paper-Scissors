@@ -1,3 +1,5 @@
+//---BUSINESS LOGIC---
+
 //Logic to get computer choice 
 let getComputerChoice = () => {
     //keep a random number between 1-100
@@ -19,76 +21,45 @@ let getComputerChoice = () => {
 }
 
 
-//Logic to get human choice
-let getHumanChoice = () => {
-    let humanChoice;
-
-    //keep user input 
-    let i = 0;
-    do{
-        //if isn't valid show an error message and try again
-        if(i>0){
-            alert("[ERROR] input not valid, try again!");
-        }
-
-        humanChoice = prompt("Enter your game's choice ('rock', 'paper', 'scissors')", "");
-        humanChoice = humanChoice.toLowerCase();
-        i++;
-    }while(!(humanChoice == "scissors" || humanChoice == "paper" || humanChoice == "rock"));
-    
-    //return choice
-    return humanChoice;
-}
-
-
-
-
 //scores variables
+let userScore = 0;
 let computerScore = 0;
-let humanScore = 0;
-
-//function that shows points scored during game session
-let checkPoints = numRound => {
-    alert("ROUND NUMBER " + numRound + "\n" +
-        "---Human score---: " + humanScore + "\n" +
-        "---Computer score---: " + computerScore
-    );
-}
 
 
 //Logic to play a round
 let playRound = (event) => {
-    console.log("[ROUND START]");
-
+    
     let humanChoice = event.target.className;
     let computerChoice = getComputerChoice();
+
+    let winnerAnn;
 
     //if human choice is "rock", then verify computer choice to announce winner
     if(humanChoice=="rock"){
         if(computerChoice=="rock"){
-            alert("[DRAW] both chose rock option");
+            winnerAnn = "DRAW both made the same choose";
 
         }else if(computerChoice=="paper"){
-            alert("[YOU LOSE] computer are better than humans folks! :(");
+            winnerAnn = "YOU LOSE computer are better than humans folks!";
             computerScore++;
 
         }else{
-            alert("[YOU WIN] congrats dude :)");
-            humanScore++;
+            winnerAnn = "YOU WIN congrats dude :)";
+            userScore++;
         }
     }
 
     //if human choice is "scissors", then verify computer choice to announce winner
     else if(humanChoice=="paper"){
         if(computerChoice=="rock"){
-            alert("[YOU WIN] congrats dude :)");
-            humanScore++;
+            winnerAnn = "YOU WIN congrats dude :)";
+            userScore++;
 
         }else if(computerChoice=="paper"){
-            alert("[DRAW] both chose rock option");
+            winnerAnn = "DRAW both chose rock option";
 
         }else{
-            alert("[YOU LOSE] computer are better than humans folks! :(");
+            winnerAnn = "YOU LOSE computer are better than humans folks! :(";
             computerScore++;
         }
     }
@@ -96,15 +67,15 @@ let playRound = (event) => {
     //if human choice is "paper", then verify computer choice to announce winner
     else if(humanChoice=="scissors"){
         if(computerChoice=="rock"){
-            alert("[YOU LOSE] computer are better than humans folks! :(");
+            winnerAnn = "YOU LOSE computer are better than humans folks! :(";
             computerScore++;
 
         }else if(computerChoice=="paper"){
-            alert("[YOU WIN] congrats dude :)");
-            humanScore++;
+            winnerAnn = "YOU WIN congrats dude :)";
+            userScore++;
 
         }else{
-            alert("[DRAW] both chose rock option");
+            winnerAnn = "DRAW both chose rock option";
         }
     }
 
@@ -112,9 +83,34 @@ let playRound = (event) => {
     else{
         alert("WTF HAVE U CHOSEN DUDE");
     }
+
+    h1.textContent = winnerAnn;
+    para.textContent = `USER SCORE: ${userScore} ---- COMPUTER SCORE: ${computerScore}`;
 }
 
+//---DOM MANIPULATION---
 
 //seleziono i 3 button
 const buttons = document.querySelectorAll("button");
 buttons.forEach(button => button.addEventListener("click", playRound));
+
+//creo un <div> element che mostrerà il punteggio della partita
+const div = document.createElement("div");
+
+//creo un <h1> element
+const h1 = document.createElement("h1");
+
+//creo un <p> element
+const para = document.createElement("p");
+
+//aggiungo il <div> element al body
+document.body.appendChild(div);
+
+//faccio l'append del <p> a <div>
+div.appendChild(h1);
+div.appendChild(para);
+
+
+
+
+ 
