@@ -41,85 +41,80 @@ let getHumanChoice = () => {
 }
 
 
-//Logic to play an entire game
-let playGame = () => {
-
-    //scores variables
-    let computerScore = 0;
-    let humanScore = 0;
-
-    //function that shows points scored during game session
-    let checkPoints = numRound => {
-        alert("ROUND NUMBER " + numRound + "\n" +
-            "---Human score---: " + humanScore + "\n" +
-            "---Computer score---: " + computerScore
-        );
-    }
 
 
-    //Logic to play a round
-    let playRound = (humanChoice, computerChoice) => {
-        console.log("[ROUND START]");
+//scores variables
+let computerScore = 0;
+let humanScore = 0;
 
-        //if human choice is "rock", then verify computer choice to announce winner
-        if(humanChoice=="rock"){
-            if(computerChoice=="rock"){
-                alert("[DRAW] both chose rock option");
+//function that shows points scored during game session
+let checkPoints = numRound => {
+    alert("ROUND NUMBER " + numRound + "\n" +
+        "---Human score---: " + humanScore + "\n" +
+        "---Computer score---: " + computerScore
+    );
+}
 
-            }else if(computerChoice=="paper"){
-                alert("[YOU LOSE] computer are better than humans folks! :(");
-                computerScore++;
 
-            }else{
-                alert("[YOU WIN] congrats dude :)");
-                humanScore++;
-            }
-        }
+//Logic to play a round
+let playRound = (event) => {
+    console.log("[ROUND START]");
 
-        //if human choice is "scissors", then verify computer choice to announce winner
-        else if(humanChoice=="paper"){
-            if(computerChoice=="rock"){
-                alert("[YOU WIN] congrats dude :)");
-                humanScore++;
+    let humanChoice = event.target.className;
+    let computerChoice = getComputerChoice();
 
-            }else if(computerChoice=="paper"){
-                alert("[DRAW] both chose rock option");
+    //if human choice is "rock", then verify computer choice to announce winner
+    if(humanChoice=="rock"){
+        if(computerChoice=="rock"){
+            alert("[DRAW] both chose rock option");
 
-            }else{
-                alert("[YOU LOSE] computer are better than humans folks! :(");
-                computerScore++;
-            }
-        }
+        }else if(computerChoice=="paper"){
+            alert("[YOU LOSE] computer are better than humans folks! :(");
+            computerScore++;
 
-        //if human choice is "paper", then verify computer choice to announce winner
-        else if(humanChoice=="scissors"){
-            if(computerChoice=="rock"){
-                alert("[YOU LOSE] computer are better than humans folks! :(");
-                computerScore++;
-
-            }else if(computerChoice=="paper"){
-                alert("[YOU WIN] congrats dude :)");
-                humanScore++;
-
-            }else{
-                alert("[DRAW] both chose rock option");
-            }
-        }
-
-        //if human choice is broken (it shouldn't cause we defensive programmed input) print error
-        else{
-            alert("WTF HAVE U CHOSEN DUDE");
+        }else{
+            alert("[YOU WIN] congrats dude :)");
+            humanScore++;
         }
     }
 
+    //if human choice is "scissors", then verify computer choice to announce winner
+    else if(humanChoice=="paper"){
+        if(computerChoice=="rock"){
+            alert("[YOU WIN] congrats dude :)");
+            humanScore++;
 
-    //5 round game
-    for(let i=0; i<5; i++){
-        playRound(getHumanChoice(), getComputerChoice());
-        checkPoints(i+1);
+        }else if(computerChoice=="paper"){
+            alert("[DRAW] both chose rock option");
+
+        }else{
+            alert("[YOU LOSE] computer are better than humans folks! :(");
+            computerScore++;
+        }
+    }
+
+    //if human choice is "paper", then verify computer choice to announce winner
+    else if(humanChoice=="scissors"){
+        if(computerChoice=="rock"){
+            alert("[YOU LOSE] computer are better than humans folks! :(");
+            computerScore++;
+
+        }else if(computerChoice=="paper"){
+            alert("[YOU WIN] congrats dude :)");
+            humanScore++;
+
+        }else{
+            alert("[DRAW] both chose rock option");
+        }
+    }
+
+    //if human choice is broken (it shouldn't cause we defensive programmed input) print error
+    else{
+        alert("WTF HAVE U CHOSEN DUDE");
     }
 }
 
 
-//MAIN
-playGame();
+//seleziono i 3 button
+const buttons = document.querySelectorAll("button");
+buttons.forEach(button => button.addEventListener("click", playRound));
